@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.util.List;
+
 public class UserInterface {
 
     Dealership dealership;
@@ -23,8 +25,16 @@ public class UserInterface {
 
     }
 
-    private void displayVehicles() {
-
+    private void displayVehicles(Vehicle vehicles) {
+        System.out.println("=====[Dealership Vehicle List]=====");
+        System.out.println("Type: " + vehicles.getVehicleType());
+        System.out.println("Year: " + vehicles.getYear());
+        System.out.println("Make: " + vehicles.getMake());
+        System.out.println("Model: " + vehicles.getModel());
+        System.out.println("Color: " + vehicles.getColor());
+        System.out.println("Price $: " + vehicles.getPrice());
+        System.out.println("Vin: " + vehicles.getVin());
+        System.out.println("===============================");
     }
 
     public void processGetByPriceRequest() {

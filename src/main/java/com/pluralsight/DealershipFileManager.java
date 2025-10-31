@@ -14,9 +14,6 @@ public class DealershipFileManager {
 
             String line;
 
-            //Skips header
-            bufferedReader.readLine();
-
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] inventoryParts = line.split("[|]");

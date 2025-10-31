@@ -65,17 +65,6 @@ public class UserInterface {
         System.out.println("================================");
     }
 
-
-//    System.out.println("=====[Dealership Vehicle List]=====");
-//        System.out.println("Type: " + vehicles.getVehicleType());
-//        System.out.println("Year: " + vehicles.getYear());
-//        System.out.println("Make: " + vehicles.getMake());
-//        System.out.println("Model: " + vehicles.getModel());
-//        System.out.println("Color: " + vehicles.getColor());
-//        System.out.println("Price $: " + vehicles.getPrice());
-//        System.out.println("Vin: " + vehicles.getVin());
-//        System.out.println("===============================");
-
     private void displayVehicles(List<Vehicle> vehicles) {
         for (Vehicle v : vehicles) {
             System.out.println(v);

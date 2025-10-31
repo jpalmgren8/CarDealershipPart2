@@ -53,4 +53,8 @@ public abstract class Contract {
     public void setVehicleSold(String vehicleSold) {
         this.vehicleSold = vehicleSold;
     }
+
+    public abstract double getTotalPrice();
+
+    public abstract double getMonthlyPayment();
 }

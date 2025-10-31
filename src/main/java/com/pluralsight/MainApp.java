@@ -8,6 +8,6 @@ public class MainApp {
         ui.display();
 
         // Need to find out why program won't work because this.dealership is null in DealershipFileManager
-
+        //
     }
 }

@@ -15,15 +15,27 @@ public class Dealership {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.vehicles = new ArrayList<>();
+        vehicles = new ArrayList<Vehicle>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void addVehicle(Vehicle v) {
-        vehicles.add(v);
+        this.vehicles.add(v);
     }
 
     public void removeVehicle(Vehicle v) {
-        vehicles.remove(v);
+        this.vehicles.remove(v);
     }
 
     public List<Vehicle> getAllVehicles() {
@@ -31,6 +43,17 @@ public class Dealership {
 
         for (Vehicle v : vehicles) {
             searchResult.add(v);
+        }
+        return searchResult;
+    }
+
+    public Vehicle getVehicleByVin(int vin) {
+        Vehicle searchResult = null;
+
+        for (Vehicle v : vehicles) {
+            if (v.getVin() == vin) {
+                searchResult = v;
+            }
         }
         return searchResult;
     }
@@ -100,6 +123,8 @@ public class Dealership {
         }
         return searchResult;
     }
+
+
 
 
 }

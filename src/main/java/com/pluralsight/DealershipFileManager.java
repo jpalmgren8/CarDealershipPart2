@@ -1,15 +1,12 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class DealershipFileManager {
 
-    public void getDealership(String name, String address, String phone) {
+    public static Dealership getDealership() {
 
-        Dealership dealership = new Dealership(name, address, phone);
+        Dealership dealership = null;
 
         try {
             FileReader fileReader = new FileReader("src/main/resources/inventory.csv");
@@ -24,18 +21,22 @@ public class DealershipFileManager {
 
                 String[] inventoryParts = line.split("[|]");
 
-                int vin = Integer.parseInt(inventoryParts[0]);
-                int year = Integer.parseInt(inventoryParts[1]);
-                String make = inventoryParts[2];
-                String model = inventoryParts[3];
-                String vehicleType = inventoryParts[4];
-                String color = inventoryParts[5];
-                int odometer = Integer.parseInt(inventoryParts[6]);
-                double price = Double.parseDouble(inventoryParts[7]);
+                if (inventoryParts.length > 3) {
 
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                    int vin = Integer.parseInt(inventoryParts[0]);
+                    int year = Integer.parseInt(inventoryParts[1]);
+                    String make = inventoryParts[2];
+                    String model = inventoryParts[3];
+                    String vehicleType = inventoryParts[4];
+                    String color = inventoryParts[5];
+                    int odometer = Integer.parseInt(inventoryParts[6]);
+                    double price = Double.parseDouble(inventoryParts[7]);
 
-                dealership.addVehicle(vehicle);
+                    dealership.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
+
+                } else {
+                    dealership = new Dealership(inventoryParts[0], inventoryParts[1], inventoryParts[2]);
+                }
             }
 
             bufferedReader.close();
@@ -44,10 +45,27 @@ public class DealershipFileManager {
             e.printStackTrace();
             System.out.println("Couldn't read file, please try again!");
         }
+        return dealership;
     }
 
-    public void saveDealership() {
+    public static void saveDealership(Dealership dealership) {
+        try {
 
+            FileWriter fileWriter = new FileWriter("src/main/resources/inventory.csv", false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(dealership.getName() + " | " + dealership.getAddress() + " | " + dealership.getPhone());
+
+            for (Vehicle v: dealership.getAllVehicles()) {
+                bufferedWriter.write(v.getVin() + " | " + v.getYear() + " | " + v.getMake() + " | " + v.getModel() + " | " + v.getVehicleType() + " | " + v.getColor() + " | " + v.getOdometer() + " | " + v.getPrice());
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

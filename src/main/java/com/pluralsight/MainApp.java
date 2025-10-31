@@ -3,9 +3,9 @@ package com.pluralsight;
 public class MainApp {
     public static void main(String[] args) {
 
-//        UserInterface userInterface;
-//
-//        userInterface.display();
+        UserInterface ui = new UserInterface();
+
+        ui.display();
 
     }
 }
